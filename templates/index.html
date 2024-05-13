@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Editor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Image Gallery</h1>
+        <div class="row">
+            {% for image in random_images %}
+            <div class="col-md-4 mb-4">
+                <a href="{{ url_for('detail', image_id=image['id']) }}">
+                    <img src="{{ url_for('static', filename='images/' + image['id'] + '.jpg') }}" width="250" class="img-fluid rounded" alt="image">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
