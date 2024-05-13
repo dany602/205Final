@@ -4,6 +4,23 @@
     <meta charset="UTF-8">
     <title>Image Editor</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: aqua;
+        }
+        .dropzone {
+            border: 2px dashed #0087F7;
+            border-radius: 5px;
+            background: white;
+            margin: 20px auto;
+            text-align: center;
+            padding: 20px;
+            cursor: pointer;
+        }
+        .dropzone:hover {
+            background: #f0f0f0;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -18,5 +35,12 @@
             {% endfor %}
         </div>
     </div>
+    <div class="dropzone" id="myDropzone">
+        <h3>Drop your image here</h3>
+    </div>
+    <button class="next-button" onclick="redirectToEdit()">Next</button>
+
+    <!-- Dropzone.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js" integrity="sha512-gc4BfjAKD6Yt+lKzokTBm88C5kRz4FJf+67Zre6n4hYGBowCjjpmdtPISXnccluMVo5/STGfYv9jqoYl4LHrGw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>
