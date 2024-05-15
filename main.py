@@ -58,7 +58,7 @@ def final():
     image_path = os.path.join(app.root_path, 'static', 'images', f'{image_id}.jpg')
     if os.path.exists(image_path):
         with Image.open(image_path) as img:
-            # Apply the selected filter
+
             if filter_name == 'apply_sepia':
                 filtered_image = apply_sepia(img)
             elif filter_name == 'apply_negative':

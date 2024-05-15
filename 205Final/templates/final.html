@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filtered Image</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Filtered Image</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Original Image</h3>
+                <img src="{{ url_for('static', filename='images/' + image['id'] + '.jpg') }}" class="img-fluid" alt="Original Image">
+            </div>
+            <div class="col-md-6">
+                <h3>Filtered Image</h3>
+                <img src="{{ url_for('static', filename='filtered_images/' + image['id'] + '_filtered.jpg') }}" class="img-fluid" alt="Filtered Image">
+                <a href="{{ url_for('static', filename='filtered_images/' + image['id'] + '_filtered.jpg') }}" download class="btn btn-primary mt-3">Download Filtered Image</a>
+            </div>
+        </div>
+        <a href="{{ url_for('home') }}" class="btn btn-secondary mt-3">Return to Home</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
