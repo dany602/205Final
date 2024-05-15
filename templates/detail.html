@@ -16,6 +16,7 @@
                 <a class="dropdown-item" href="{{ url_for('final', image_id=image.id, filter='apply_negative') }}">Apply Negative</a>
                 <a class="dropdown-item" href="{{ url_for('final', image_id=image.id, filter='apply_grayscale') }}">Apply Grayscale</a>
                 <a class="dropdown-item" href="{{ url_for('final', image_id=image.id, filter='create_thumbnail') }}">Create Thumbnail</a>
+                <a class="dropdown-item" href="{{ url_for('final', image_id=image.id, filter='apply_gaussian_blur') }}">Apply Gaussian Blur</a>
             </div>
         </div>
         <img src="{{ url_for('static', filename='images/' + image.id + '.jpg') }}" class="img-fluid rounded mt-3" alt="image">

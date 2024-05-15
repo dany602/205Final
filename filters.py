@@ -1,5 +1,5 @@
 # functions.py
-# Author: Drake Goldsmith, Jasmin Medrano, Daniel Urtis
+# Author: Drake Goldsmith, Jasmin Medrano, Daniel Bonilla Urtis
 # Class: CST 205
 # Date: 05/13/24
 # Brief Description: Contains image manipulation and search functions.
@@ -107,3 +107,18 @@ def create_thumbnail(image):
 
     return thumbnail
 
+# adds gausion blur effect
+def apply_gaussian_blur(image, radius):
+    """
+    Applies a Gaussian blur filter to the provided image.
+
+    Args:
+        image: The input image object.
+        radius: The radius of the Gaussian blur filter (higher = more blur).
+
+    Returns:
+        Image: The image object with Gaussian blur applied.
+    """
+
+    blurred_image = image.filter(image_filter.GaussianBlur(radius=radius))
+    return blurred_image
