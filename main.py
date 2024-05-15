@@ -11,6 +11,7 @@ from image_info import image_info
 from filters import apply_sepia, apply_negative, apply_grayscale, create_thumbnail, apply_gaussian_blur
 from werkzeug.utils import secure_filename
 
+
 """
     Name: Drake Goldsmith, Jasmin Medrano, Daniel Bonilla Urtis
     Date: 05/13/24
