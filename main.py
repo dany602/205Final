@@ -10,10 +10,6 @@ from PIL import Image
 from image_info import image_info
 from filters import apply_sepia, apply_negative, apply_grayscale, create_thumbnail, apply_gaussian_blur
 from werkzeug.utils import secure_filename
-<<<<<<< HEAD
-=======
-
->>>>>>> c1660597492db6db7dc46dae4a358c8491c39123
 
 """
     Name: Drake Goldsmith, Jasmin Medrano, Daniel Bonilla Urtis
@@ -88,22 +84,14 @@ def upload():
         return "No selected file", 400
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
-<<<<<<< HEAD
         file_path = os.path.join(app.root_path, 'static', 'uploaded_images', filename)
         print(filename)
-=======
-        file_path = os.path.join(app.root_path, 'static', 'images', filename)
->>>>>>> c1660597492db6db7dc46dae4a358c8491c39123
         file.save(file_path)
         # Add the new image to image_info
         new_image_id = filename.split('.')[0]
         image_info.append({"id": new_image_id, "filename": filename})
-<<<<<<< HEAD
         print(new_image_id)
         return render_template('userUpload.html', filename=filename)
-=======
-        return redirect(url_for('home'))
->>>>>>> c1660597492db6db7dc46dae4a358c8491c39123
     return "File upload failed", 400
 
 def allowed_file(filename):
