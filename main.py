@@ -21,6 +21,7 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 Bootstrap5(app)
 
+# Drake worked on def home, detail, and final
 @app.route('/')
 def home():
     shuffle(image_info)
@@ -44,6 +45,7 @@ def detail(image_id):
             mode = img.mode
             image_format = img.format
         return render_template('detail.html', image=image, width=width, height=height, mode=mode, format=image_format)
+
 
 @app.route('/final')
 def final():
@@ -73,6 +75,7 @@ def final():
             
     return render_template('final.html', image=image, filtered_image_path=filtered_image_path)
 
+# Daniel worked on def upload and edit
 @app.route('/upload', methods=['POST'])
 def upload():
     if 'file' not in request.files:
@@ -94,7 +97,7 @@ def edit():
     filename = request.args.get('filename')
     return render_template('edit.html', filename=filename)
 
-
+# Jasmin worked on def apply_filter
 @app.route('/apply_filter')
 def apply_filter():
     filename = request.args.get('filename')
