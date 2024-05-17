@@ -106,19 +106,3 @@ def create_thumbnail(image):
             thumbnail.putpixel((x // 2, y // 2), pixel)
 
     return thumbnail
-
-# add gausion blur effect
-def apply_gaussian_blur(image, radius):
-    """
-    Applies a Gaussian blur filter to the provided image.
-
-    Args:
-        image: The input image object.
-        radius: The radius of the Gaussian blur filter (higher = more blur).
-
-    Returns:
-        Image: The image object with Gaussian blur applied.
-    """
-
-    blurred_image = image.filter(image_filter.GaussianBlur(radius=radius))
-    return blurred_image

@@ -2,20 +2,20 @@ import base64
 from io import BytesIO
 import os
 import random
-import cv2
 from flask import Flask, render_template, request, url_for, redirect
 from flask_bootstrap import Bootstrap5
 from random import shuffle
 from PIL import Image
 from image_info import image_info
-from filters import apply_sepia, apply_negative, apply_grayscale, create_thumbnail, apply_gaussian_blur
+from filters import apply_sepia, apply_negative, apply_grayscale, create_thumbnail
 from werkzeug.utils import secure_filename
 
 """
     Name: Drake Goldsmith, Jasmin Medrano, Daniel Bonilla Urtis
     Date: 05/13/24
     Course: CST 205: Multimedia Programming
-    Description: 
+    Description: A program that allows the user to select a default image or upload their own.
+    Then allows the user to add a filter to the image and save it.
 """
 
 app = Flask(__name__)
@@ -67,8 +67,6 @@ def final():
                 filtered_image = apply_grayscale(img)
             elif filter_name == 'create_thumbnail':
                 filtered_image = create_thumbnail(img)
-            elif filter_name == 'apply_gaussian_blur':
-                filtered_image = apply_gaussian_blur(img, radius)
 
             filtered_image_path = os.path.join(app.root_path, 'static', 'filtered_images', f'{image_id}_filtered.jpg')
             filtered_image.save(filtered_image_path)
@@ -85,14 +83,42 @@ def upload():
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file_path = os.path.join(app.root_path, 'static', 'uploaded_images', filename)
-        print(filename)
         file.save(file_path)
         # Add the new image to image_info
         new_image_id = filename.split('.')[0]
         image_info.append({"id": new_image_id, "filename": filename})
-        print(new_image_id)
-        return render_template('userUpload.html', filename=filename)
+        return redirect(url_for('edit', filename=filename))
     return "File upload failed", 400
+
+@app.route('/edit')
+def edit():
+    filename = request.args.get('filename')
+    return render_template('edit.html', filename=filename)
+
+
+@app.route('/apply_filter')
+def apply_filter():
+    filename = request.args.get('filename')
+    filter_name = request.args.get('filter')
+    file_path = os.path.join(app.root_path, 'static', 'uploaded_images', filename)
+    
+    if os.path.exists(file_path):
+        with Image.open(file_path) as img:
+            if filter_name == 'apply_sepia':
+                filtered_image = apply_sepia(img)
+            elif filter_name == 'apply_negative':
+                filtered_image = apply_negative(img)
+            elif filter_name == 'apply_grayscale':
+                filtered_image = apply_grayscale(img)
+            elif filter_name == 'create_thumbnail':
+                filtered_image = create_thumbnail(img)
+            
+            filtered_image_filename = f'filtered_{filename}'
+            filtered_image_path = os.path.join(app.root_path, 'static', 'filtered_images', filtered_image_filename)
+            filtered_image.save(filtered_image_path)
+            return render_template('filtered.html', original_filename=filename, filtered_image_filename=filtered_image_filename)
+    return "Error applying filter", 400
+
 
 def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}

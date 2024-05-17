@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ image.title }} Detail</title>
+    <title>Edit Image</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
@@ -12,13 +12,13 @@
                 Choose Filter
             </button>
             <div class="dropdown-menu" aria-labelledby="filterDropdown">
-                <a class="dropdown-item" href="{{ url_for('final', image_id=image.id, filter='apply_sepia') }}">Apply Sepia</a>
-                <a class="dropdown-item" href="{{ url_for('final', image_id=image.id, filter='apply_negative') }}">Apply Negative</a>
-                <a class="dropdown-item" href="{{ url_for('final', image_id=image.id, filter='apply_grayscale') }}">Apply Grayscale</a>
-                <a class="dropdown-item" href="{{ url_for('final', image_id=image.id, filter='create_thumbnail') }}">Create Thumbnail</a>
+                <a class="dropdown-item" href="{{ url_for('apply_filter', filename=filename, filter='apply_sepia') }}">Apply Sepia</a>
+                <a class="dropdown-item" href="{{ url_for('apply_filter', filename=filename, filter='apply_negative') }}">Apply Negative</a>
+                <a class="dropdown-item" href="{{ url_for('apply_filter', filename=filename, filter='apply_grayscale') }}">Apply Grayscale</a>
+                <a class="dropdown-item" href="{{ url_for('apply_filter', filename=filename, filter='create_thumbnail') }}">Create Thumbnail</a>
             </div>
         </div>
-        <img src="{{ url_for('static', filename='images/' + image.id + '.jpg') }}" class="img-fluid rounded mt-3" alt="image">
+        <img src="{{ url_for('static', filename='uploaded_images/' + filename) }}" class="img-fluid rounded mt-3" alt="Uploaded Image">
         <a href="{{ url_for('home') }}" class="btn btn-primary mt-3 mr-2">Back to Home</a>
     </div>
 
