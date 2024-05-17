@@ -84,7 +84,6 @@ def upload():
         filename = secure_filename(file.filename)
         file_path = os.path.join(app.root_path, 'static', 'uploaded_images', filename)
         file.save(file_path)
-        # Add the new image to image_info
         new_image_id = filename.split('.')[0]
         image_info.append({"id": new_image_id, "filename": filename})
         return redirect(url_for('edit', filename=filename))
